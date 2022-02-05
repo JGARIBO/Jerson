@@ -1,6 +1,6 @@
 ﻿namespace JersonDiaz.Clases
 {
-    public class Cliente
+    public class ClienteNuevos
     {
       
     public int IdCliente { get; set; }
@@ -11,6 +11,8 @@
     public string   Cedula { get; set; }
 
     public string Genero { get; set; }
+
+        public datei
 
     }
 }

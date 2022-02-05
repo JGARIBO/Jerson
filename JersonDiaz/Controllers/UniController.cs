@@ -18,7 +18,7 @@ namespace JersonDiaz.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            Cliente cliente = new Cliente();
+            ClienteNuevos cliente = new ClienteNuevos();
 
             List<SelectListItem> lsts = new List<SelectListItem>();
 
@@ -31,7 +31,7 @@ namespace JersonDiaz.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Index(Cliente X,string Grabar)
+        public IActionResult Index(ClienteNuevos X,string Grabar)
         {
             //aqui iria para grabar
 
