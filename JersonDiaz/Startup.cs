@@ -30,6 +30,14 @@ namespace JersonDiaz
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+
+            //nuevo servicio para conexion de la base de datos JERSON
+              services.AddDbContext<MyDbContext>(options =>
+              options.UseSqlServer(
+              Configuration.GetConnectionString("DefaultConnection")));
+
+            ///
+
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
