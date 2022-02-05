@@ -12,7 +12,7 @@
 
     public string Genero { get; set; }
 
-        public datei
+       
 
     }
 }
