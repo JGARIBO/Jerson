@@ -1,0 +1,104 @@
+﻿
+
+@using JersonDiaz.Models
+
+
+@{
+    ViewBag.Title = "Ver Calendario Pagos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<style type="text/css">
+    td.block {
+        border: 1px solid black;
+    }
+</style>
+
+
+<div class="row">
+    <br />
+    <div class="col-lg-10"><h3>CL | <small>Plan de Pago</small></h3></div>
+    @*<div class="col-lg-2">Fecha del sistem: <label>@ViewBag.FecSistema</label></div>*@
+    <br />
+    <div style="width:98%;margin-left:1%;">
+        <div class="page-title">
+            <ol class="breadcrumb">
+                <li>
+                    <i class="fa fa-home"></i>  @Html.ActionLink("ir a la ventana", "Login", "Uni")
+                </li>
+                <li class="active"> Inicio</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+
+@using (Html.BeginForm("VerCalendario", "Uni", FormMethod.Post))
+{
+    <form role="form" class="align-content-center">
+        <fieldset style="border-width:0; text-align:center; width:1500px;position:absolute;left:36%;margin-left:-600px;">
+            <div style="margin-right:00px;" class="row">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-9">
+
+                    <div class="portlet portlet-default">
+                        <div class="portlet-heading">
+                            <div class="portlet-title">
+                                <h4>Calendario de Pago</h4>
+                            </div>
+                          
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="portlet-body ">
+                            <div class="table-responsive text-nowrap overflow-auto">
+                                <div class="form-horizontal scroll-200px div-height-400 ">
+                                    <table class="table table-bordered table-hover table-green-thead table-responsive  ">
+                                        <thead>
+                                            <tr>
+
+                                                <th>№ Cuota</th>
+                                                <th>Fecha</th>
+                                                <th>Saldo-Inicial</th>
+                                                <th>Capital</th>
+                                                <th>Interes</th>
+                                                <th>Seguro</th>
+                                                <th>Deslizamiento</th>
+                                                <th>Monto-Cuota</th>
+                                                <th>Saldo-Capital</th>
+                                                <th>Monto-Pagado</th>
+                                                <th>Estado</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var datos in ViewBag.Calendario)
+                                            {
+                                                <tr>
+
+                                                    <td>@datos.NumCuota</td>
+                                                    <td>@datos.FechaPago</td>
+                                                    <td>@datos.SaldoInicial.ToString("###,###,###,###,###.#0")</td>
+                                                    <td>@datos.Capital.ToString("###,###,###,###,###.#0")</td>
+                                                    <td>@datos.Interes.ToString("###,###,###,###,###.#0")</td>
+                                                    <td>@datos.Seguro</td>
+                                                    <td>@datos.Deslizamiento</td>
+                                                    <td>@datos.TotalCuota.ToString("###,###,###,###,###.#0")</td>
+                                                    <td>@datos.SaldoFinal.ToString("###,###,###,###,###.#0")</td>
+                                                    <td>@datos.MontoPagado.ToString("###,###,###,###,###.#0")</td>
+                                                    <td>@datos.Estado</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2"></div>
+            </div>
+        </fieldset>
+    </form>
+}
+

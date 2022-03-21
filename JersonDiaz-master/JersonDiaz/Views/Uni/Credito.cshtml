@@ -1,0 +1,282 @@
+﻿
+@using JersonDiaz.Clases
+@model Credito
+
+@{
+    ViewBag.Title = "Mantenimiento-Credito";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<div class="row">
+    <br />
+    <div class="col-lg-10"><h3>Credito | <small>Nuevo-Credito</small></h3></div>
+     <div class="col-lg-2">Fecha del sistema: <label>@DateTime.Now.ToShortDateString()</label></div>
+    <br />
+    <div style="width:98%;margin-left:1%;">
+        <div class="page-title">
+            <ol class="breadcrumb">
+                <li>
+                    <i class="fa fa-home"></i>  @Html.ActionLink("ir a la ventana", "Login", "Uni")
+                </li>
+                <li class="active"> Inicio</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    @using (Html.BeginForm("Credito", "Uni", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.ValidationSummary(true)
+
+        <input name="__RequestVerificationToken" type="hidden" value="4Rbzdk24McGjSsKnnTgtCWXUXfpQt5oDCujWAamlTiL8QuME-11yjYey5yHSASu87n7H3bKBcFmGAMHap7MItZXAht_FIZt_W1eYgtb23QM1">
+        <fieldset>
+
+     
+
+            <div class="col-lg-12">
+                <div class="portlet portlet-green">
+                    <div class="portlet-heading">
+                        <div class="portlet-title">
+                            <h4>Datos</h4>
+                        </div>
+
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div>
+                        <div class="portlet-body">
+                            <div class="form-horizontal">
+                                <div class="form-row">
+
+
+                                    <div class="col-lg-2 no-show-ele2">
+                                        <label>IdPrestamo:</label>
+                                        @Html.TextBoxFor(model => model.IdPrestamo, new { @class = "input form-control text-box single-line", id = "IdCliente", @readonly = "readonly" })
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <label>Cliente:</label>
+
+                                        <select name="IdCliente" class="form-control">
+
+                                            @foreach (var xaeco in ViewBag.Cl)
+                                            {
+                                                if (xaeco.IdCliente.ToString() == ViewBag.checkcl.ToString())
+                                                {
+                                                    <option class="no-show-ele1" value="@xaeco.IdCliente" selected>@xaeco.Nombre</option>
+                                                }
+                                                else
+                                                {
+                                                    <option class="no-show-ele1" value="@xaeco.IdCliente">@xaeco.Nombre</option>
+                                                }
+                                            }
+                                        </select>
+                                    </div>
+
+                                    <div class="col-lg-4 no-show-ele2">
+                                        <label>Monto Solicitado:</label>
+                                        @Html.TextBoxFor(model => model.Monto, new { @class = "input form-control text-box single-line x-monto", id = "Monto" })
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <label>&nbsp;</label>
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                        <label>Interes(%):</label>
+                                        @Html.TextBoxFor(Model => Model.Interes, new { @class = "input form-control text-box single-line x-monto", id = "Interes" })
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <label>Forma-Pago:</label>
+
+                                        <select name="IdFormaPago" class="form-control">
+
+                                            @foreach (var xaeco in ViewBag.Cf)
+                                            {
+                                                if (xaeco.IdFormaPago.ToString() == ViewBag.checkcf.ToString())
+                                                {
+                                                    <option class="no-show-ele1" value="@xaeco.IdFormaPago" selected>@xaeco.Descripcion</option>
+                                                }
+                                                else
+                                                {
+                                                    <option class="no-show-ele1" value="@xaeco.IdFormaPago">@xaeco.Descripcion</option>
+                                                }
+                                            }
+                                        </select>
+                                    </div>
+
+
+                                    <div class="col-lg-3">
+                                        <label>Plazo:</label>
+                                        @Html.TextBoxFor(m => m.Plazo, new { @class = "input text-box form-control single-line entero", id = "Plazo" })
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <label>&nbsp;</label>
+                                    </div>
+
+                                    <div class="col-lg-3 no-show-ele2">
+                                        <label>Monto Seguro:</label>
+                                        @Html.TextBoxFor(model => model.Seguro, new { @class = "input form-control text-box single-line x-monto", id = "Seguro" })
+                                    </div>
+
+                                    <div class="col-lg-3 no-show-ele2">
+                                        <label>Monto Mora:</label>
+                                        @Html.TextBoxFor(model => model.Mora, new { @class = "input form-control text-box single-line x-monto", id = "Mora" })
+                                    </div>
+
+                                    <div class="col-lg-3 no-show-ele2">
+                                        <label>Fecha-Inicio:</label>
+                                        @Html.TextBoxFor(Model => Model.FechaCreacion, new { @class = "input form-control text-box single-line datepicker ", id = "FechaCreacion", required = "required" })
+                                    </div>
+
+
+                                    <div class="col-lg-3">
+                                        <label>&nbsp;</label>
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <label>&nbsp;</label>
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <div class="col-lg-5"></div>
+                                                <div class="col-lg-2 text-center">
+                                                    @*@using (Html.BeginForm("grabar", "CE_producto", FormMethod.Post))
+                        {*@
+
+                                                    <button type="submit" name="Grabar" value="2" class="btn btn-success">Generar-Plan-Pago</button>
+
+                                                    @* }*@
+
+                                                </div>
+                                                <div class="col-lg-5"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <label>&nbsp;</label>
+                                    </div>
+
+
+                                    <div class="col-lg-12  text-center">
+                                        @if (ViewBag.t != null)
+                                        {
+                                           
+
+                                        <div class="col-lg-12  text-center">
+
+                                            @*<div class="col-lg-2">
+                                                <label>&nbsp;</label>
+                                            </div>*@
+
+
+                                            <div class="col-lg-12">
+                                                <div class="portlet-body">
+                                                    <div class="table-responsive">
+                                                        <div class="form-horizontal scroll-200px div-height-200">
+                                                            <table class="table table-bordered table-hover table-green-thead table-responsive">
+                                                                <thead>
+                                                                    <tr>
+
+                                                                        <th>№ Cuota</th>
+                                                                        <th>Fecha</th>
+                                                                        <th>Saldo-Inicial</th>
+                                                                        <th>Capital</th>
+                                                                        <th>Interes</th>
+                                                                        <th>Seguro</th>
+                                                                        <th>Deslizamiento</th>
+                                                                        <th>Monto-Cuota</th>
+                                                                        <th>Saldo-Capital</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @foreach (var datos in ViewBag.t)
+                                                                    {
+                                                                    <tr>
+
+                                                                        <td>@datos.NUM_CUOTA</td>
+                                                                        <td>@datos.FECHA_PAGO</td>
+                                                                        <td>@datos.SALDO_INICIAL.ToString("###,###,###,###,###.#0")</td>
+                                                                        <td>@datos.CAPITAL.ToString("###,###,###,###,###.#0")</td>
+                                                                        <td>@datos.INTERES.ToString("###,###,###,###,###.#0")</td>
+                                                                        <td>@datos.SEGURO</td>
+                                                                        <td>@datos.DESLI</td>
+                                                                        <td>@datos.TOTAL_CUOTA.ToString("###,###,###,###,###.#0")</td>
+                                                                        <td>@datos.SALDO_FINAL.ToString("###,###,###,###,###.#0")</td>
+                                                                    </tr>
+                                                                    }
+                                                                </tbody>
+                                                            </table>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+                                            </div>
+
+                                            @*<div class="col-lg-1">
+                                                <label>&nbsp;</label>
+                                            </div>*@
+                                        </div>
+                                            }
+                                        </div>
+                                </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-lg-12"></div>
+
+                        @*<div class="col-lg-2 text-center">*@
+
+                        <button type="submit" name="Grabar" value="1" class="btn btn-primary">@ViewBag.Boton2</button>
+
+
+                        @*</div>*@
+
+                        @*<button name="Canelar" value="" class="btn btn-danger" href="@Url.Action("ListarCredito","Uni")">Cancelar</button>*@
+                        <a class="btn btn-danger" href="@Url.Action("ListarCredito","Uni")">Cancelar</a>
+                        <div class="col-lg-5"></div>
+                    </div>
+                    </div>
+            </div>
+            <!-- Fin de la colugna de 12 espacios col-lg-12 (Boton Guardar) -->
+        </fieldset>
+
+
+    }
+</div>
+    <div>
+        @if (ViewBag.modal == "mostrar")
+        {
+            <div id="id01" class="w3-modal" style="display:block;">
+                <div class="w3-modal-content" style="width:25%;">
+                    <header class="w3-container w3-teal">
+                        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                        <h3>@ViewBag.ModalTitulo</h3>
+                    </header>
+                    <div class="w3-container">
+                        <p>@ViewBag.ModalMsj</p>
+                    </div>
+                    <footer class="w3-container w3-teal">
+                        <p>@ViewBag.ModalPie</p>
+                    </footer>
+                </div>
+            </div>
+        }
+    </div>
+
+   

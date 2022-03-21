@@ -1,0 +1,81 @@
+﻿@using JersonDiaz.Clases 
+@model UsuariosLogin
+
+@{
+    ViewBag.Title = "Sistema de Credito | Login";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+
+
+@using (Html.BeginForm("login", "Uni", FormMethod.Post))
+{
+    @Html.AntiForgeryToken();
+    @Html.ValidationSummary(true);
+    
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="centrar-login">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <div class="login-panel panel panel-default border-shadow">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Login de acceso al sistema</h3>
+                        </div>
+                        <div class="panel-body">
+                            <form role="form">
+                                @*<fieldset>*@
+                                    <div class="form-group">
+                                        @Html.TextBoxFor(m => m.Usuario, new { @class = "form-control", @placeholder = "Usuario", @autofocus="autofocus" })
+                                        @Html.ValidationMessageFor(m => m.Usuario, "", new { @class = "text-danger"})
+                                       
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.PasswordFor(m => m.Contraseña, new { @class = "form-control", @placeholder = "Password" })
+                                        @Html.ValidationMessageFor(m => m.Contraseña, "", new { @class = "text-danger"})
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input name="remember" type="checkbox" value="Remember Me">Recordar Contraseña
+                                        </label>
+                                    </div>
+                                    <!-- Change this to a button or input when using this as a form -->
+                                    @*<a href="login" class="btn btn-lg btn-success btn-block">Login</a>*@
+                                    <input type="submit" value="Login" class="btn btn-lg btn-success btn-block" />
+                                @*</fieldset>*@
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        }
+
+<div>
+    @if (ViewBag.modal == "mostrar")
+    {
+        <div id="id01" class="w3-modal" style="display:block;">
+            <div class="w3-modal-content" style="width:25%;">
+                <header class="w3-container w3-teal">
+                    <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright"><i class="fa fa-window-close"></i></span>
+                    <h3><i class="fa fa-user"></i>&nbsp;@ViewBag.ModalTitulo</h3>
+                </header>
+                <div class="w3-container">
+                    <p>@ViewBag.ModalMsj</p>
+                </div>
+                <footer class="w3-container w3-teal">
+                    <p>@ViewBag.ModalPie</p>
+                </footer>
+            </div>
+        </div>
+    }
+</div>
